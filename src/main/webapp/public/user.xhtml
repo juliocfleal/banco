@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Usuário</title>
+</h:head>
+<body>
+<h:form>
+    <p:panel header="Usuário" style="width: 50%">
+        <h:panelGrid columns="1" style="width: 100%; text-align: left;">
+            <p:inputText id="email" value="#{userController.user.email}" placeholder="E-mail" style="width: 90%; height: 30px;" />
+            <p:commandButton value="Buscar" ajax="false" action="#{userController.findByEmail(userController.user.email)}"/>
+        </h:panelGrid>
+
+        <p:separator/>
+
+        <h:panelGrid columns="2" style="width: 100%; text-align: left;">
+            <p:outputLabel value="ID:" for="otpId"/>
+            <p:outputLabel id="otpId" value="#{userController.user.id}"/>
+            <p:outputLabel value="Nome:" for="otpName"/>
+            <p:outputLabel id="otpName" value="#{userController.user.name}"/>
+            <p:outputLabel value="E-mail:" for="otpEmail"/>
+            <p:outputLabel id="otpEmail" value="#{userController.user.email}"/>
+        </h:panelGrid>
+    </p:panel>
+</h:form>
+</body>
+</html>

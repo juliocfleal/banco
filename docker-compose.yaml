@@ -1,0 +1,37 @@
+version: "3.1"
+services:
+  db:
+    build: 
+      dockerfile: ./postgres.dockerfile
+      context: ./docker
+    image: ist-java-db
+    container_name: ist-db-container
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ist
+      POSTGRES_USER: ist
+      POSTGRES_DB: ist
+    networks:
+      - ist-network
+  java:
+    build: 
+      context: .
+    command: bash -c "mvn spring-boot:run -DskipTests=true"
+    ports:
+      - "8080:8080"
+    networks:
+      - ist-network
+    depends_on:
+      - db
+  node:
+    build: 
+      context: ./reactapp
+    ports:
+      - "3000:3000"
+    networks:
+      - ist-network
+
+
+networks: 
+  ist-network:
+    driver: bridge
