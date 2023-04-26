@@ -3,7 +3,7 @@ services:
   db:
     build: 
       dockerfile: ./postgres.dockerfile
-      context: ./docker
+      context: ./docker_postgress
     image: ist-java-db
     container_name: ist-db-container
     restart: always
